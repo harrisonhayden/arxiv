@@ -22,7 +22,7 @@ def main():
     conn = create_connection(db)
     insert_all(conn, first_thousand_papers, 1)
 
-    print('Sleeping...', end='\r')
+    print('Sleeping...', end='\x1b[1K\r')
     time.sleep(5)
 
     all_papers_to_db(conn, res_token, total_papers)
@@ -43,7 +43,7 @@ def all_papers_to_db(conn, res_token, total):
         insert_all(conn, papers, batch_num)
         batch_num += 1
 
-        print('Sleeping...', end='\r')
+        print('Sleeping...', end='\x1b[1K\r')
         time.sleep(5)
 
     time_finished = datetime.now()
