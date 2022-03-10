@@ -2,7 +2,7 @@ import sqlite3
 from sqlite3 import Error
 
 def main():
-    db = 'arxiv-oai-scraper/src/arxiv.db'
+    db = './src/arxiv.db'
     sql = """
         CREATE TABLE IF NOT EXISTS papers (
         ID REAL PRIMARY KEY,
@@ -43,6 +43,7 @@ def create_table(conn, sql):
     try:
         cursor = conn.cursor()
         cursor.execute(sql)
+        print('Created table successfully')
     except Error as e:
         print(e)
 
