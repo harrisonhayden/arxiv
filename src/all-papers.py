@@ -18,7 +18,7 @@ def main():
     total_papers = int(initial_dict['OAI-PMH']['ListRecords']['resumptionToken']['@completeListSize'])
     res_token = initial_dict['OAI-PMH']['ListRecords']['resumptionToken']['#text']
 
-    db = './src/arxiv.db'
+    db = 'arxiv.db'
     conn = create_connection(db)
     insert_all(conn, first_thousand_papers, 1)
 
