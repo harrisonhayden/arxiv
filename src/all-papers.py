@@ -1,3 +1,4 @@
+import os.path
 import requests
 import xmltodict
 from datetime import datetime
@@ -6,6 +7,8 @@ import sqlite3
 from sqlite3 import Error
 
 BASE = 'http://export.arxiv.org/oai2?verb=ListRecords'
+DIR = os.path.dirname(os.path.abspath('all-papers.py'))
+DB_PATH = os.path.join(DIR, 'arxiv.db')
 
 def main():
     # initial request for every single paper (returns first 1000)
@@ -18,8 +21,7 @@ def main():
     total_papers = int(initial_dict['OAI-PMH']['ListRecords']['resumptionToken']['@completeListSize'])
     res_token = initial_dict['OAI-PMH']['ListRecords']['resumptionToken']['#text']
 
-    db = 'arxiv.db'
-    conn = create_connection(db)
+    conn = create_connection('arxiv.db')
     insert_all(conn, first_thousand_papers, 1)
 
     print('Sleeping...', end='\x1b[1K\r')

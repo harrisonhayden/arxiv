@@ -43,7 +43,7 @@ def create_table(conn, sql):
     try:
         cursor = conn.cursor()
         cursor.execute(sql)
-        print('Created table successfully')
+        print(f'Created table successfully')
     except Error as e:
         print(e)
 
